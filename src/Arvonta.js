@@ -2,27 +2,49 @@ import React, { Component } from 'react';
 import {Form, FormGroup, FormControl, Col, Button, ControlLabel, Checkbox} from 'react-bootstrap';
 
 class Arvonta extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      arvontakerrat: "1",
+      osallistujat: "",
+      brTagi: false,
+      boldattu: false
+    };
+  }
+
   render() {
     return (
       <Form>
-        <FormGroup controlId="formHorizontalEmail">
+        <FormGroup controlId="arvontakerrat">
           <Col sm={12}>
             <ControlLabel>Arvontakerrat:</ControlLabel>
-            <FormControl type="text" />
+            <FormControl 
+              type="number" 
+              min="1"
+              max="999"
+              value={this.state.arvontakerrat}
+              onChange={this.nappaaArvontakerrat}
+            />
           </Col>
         </FormGroup>
 
-        <FormGroup controlId="formControlsTextarea">
+        <FormGroup controlId="osallistujat">
           <Col sm={12}>
             <ControlLabel>Osallistujat:</ControlLabel>
-            <FormControl componentClass="textarea" rows="10" placeholder="osallistujat" />
+            <FormControl 
+              componentClass="textarea" 
+              rows="10" 
+              placeholder="osallistujat"
+              value={this.state.osallistujat}
+              onChange={this.nappaaOsallistujat}
+             />
           </Col>
         </FormGroup>
 
         <FormGroup>
           <Col sm={12}>
-            <Checkbox>Lisää {"<br />"}-tagit</Checkbox>
-            <Checkbox>Lihavoi sijoittuneet</Checkbox>
+            <Checkbox checked={this.state.brTagi} onChange={this.nappaaBrTagi}>Lisää {"<br />"}-tagit</Checkbox>
+            <Checkbox checked={this.state.boldattu} onChange={this.nappaaBoldattu}>Lihavoi sijoittuneet</Checkbox>
           </Col>
         </FormGroup>
 
@@ -36,6 +58,26 @@ class Arvonta extends Component {
       </Form>
     );
   }
+
+  nappaaArvontakerrat = (event) => {
+    const arvo = event.target.value;
+    if(arvo.match(/^[0-9]{0,3}$/)){
+      this.setState({arvontakerrat: arvo});
+    }
+  }
+
+  nappaaOsallistujat = (event) => {
+    this.setState({osallistujat: event.target.value});
+  }
+
+  nappaaBrTagi = (event) => {
+    this.setState({brTagi: event.target.checked});
+  }
+
+  nappaaBoldattu = (event) => {
+    this.setState({boldattu: event.target.checked});
+  }
+
 }
 
 export default Arvonta;

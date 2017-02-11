@@ -14,13 +14,15 @@ class Tulokset extends Component {
 
   naytaTulokset(){
     return this.props.tulosLista.map((tulos, index) =>
-      <Tulos 
-        key={index} 
-        tulos={tulos}
-        boldattu={this.props.boldattu}
-        brTagi={this.props.brTagi}
-        sijoittuneet={this.props.sijoittuneet} 
-      />
+      <div key={index}>
+        <h2>Tulos {index+1}</h2>
+        <Tulos 
+          tulos={tulos}
+          boldattu={this.props.boldattu}
+          brTagi={this.props.brTagi}
+          sijoittuneet={this.props.sijoittuneet} 
+        />
+      </div>
     );
   }
 }

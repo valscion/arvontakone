@@ -3,17 +3,17 @@ import './App.css';
 import Tiedot from './Tiedot';
 import Arvonta from './Arvonta';
 import Tulokset from './Tulokset';
+import {Grid} from 'react-bootstrap';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <div className="jumbotron">
-          <h2>Arvontakone</h2>
-        </div>
-        <Tiedot />
-        <Arvonta />
-        <Tulokset />
+      <div>
+        <Grid>       
+          <Tiedot />
+          <Arvonta />
+          <Tulokset />
+        </Grid>
       </div>
     );
   }

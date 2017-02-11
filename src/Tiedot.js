@@ -1,11 +1,20 @@
 import React, { Component } from 'react';
+import {Grid, Jumbotron, Row, Col} from 'react-bootstrap';
 
 class Tiedot extends Component {
   render() {
     return (
-      <p className="Tiedot">
-        Arvonta woop woop!
-      </p>
+      <div>
+        <Jumbotron>
+          <h1>Arvontakone</h1>
+        </Jumbotron>
+
+        <Grid>
+          <Row>
+            <Col sm={12}>Arvontakone woop woop</Col>
+          </Row>
+        </Grid>
+      </div>
     );
   }
 }

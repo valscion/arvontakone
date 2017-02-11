@@ -3,9 +3,9 @@ import React, { Component } from 'react';
 class Arvonta extends Component {
   render() {
     return (
-      <p className="Arvonta">
+      <div className="Arvonta">
         Tähän tulee arvonta
-      </p>
+      </div>
     );
   }
 }

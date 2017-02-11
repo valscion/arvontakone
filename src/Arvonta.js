@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Form, FormGroup, FormControl, Col, Button, ControlLabel, Checkbox} from 'react-bootstrap';
+import {FormGroup, FormControl, Col, Button, ControlLabel, Checkbox} from 'react-bootstrap';
 
 class Arvonta extends Component {
   constructor(props) {
@@ -14,7 +14,7 @@ class Arvonta extends Component {
 
   render() {
     return (
-      <Form>
+      <form onSubmit={this.lahetaTiedot}>
         <FormGroup controlId="arvontakerrat">
           <Col sm={12}>
             <ControlLabel>Arvontakerrat:</ControlLabel>
@@ -33,7 +33,7 @@ class Arvonta extends Component {
             <ControlLabel>Osallistujat:</ControlLabel>
             <FormControl 
               componentClass="textarea" 
-              rows="10" 
+              rows="1" 
               placeholder="osallistujat"
               value={this.state.osallistujat}
               onChange={this.nappaaOsallistujat}
@@ -50,12 +50,12 @@ class Arvonta extends Component {
 
         <FormGroup>
           <Col sm={12}>
-            <Button type="button">
+            <Button type="submit">
               Arvo tulokset
             </Button>
           </Col>
         </FormGroup>
-      </Form>
+      </form>
     );
   }
 
@@ -76,6 +76,11 @@ class Arvonta extends Component {
 
   nappaaBoldattu = (event) => {
     this.setState({boldattu: event.target.checked});
+  }
+
+  lahetaTiedot = (event) => {
+    event.preventDefault();
+    this.props.nappaaArvot(this.state);
   }
 
 }

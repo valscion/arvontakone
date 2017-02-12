@@ -60,3 +60,14 @@ describe('strong-tagien lisäys', () => {
   });
 });
 
+test('antaa pisteiden perusteella prosentin', () => {
+  const div = document.createElement('div');
+  ReactDOM.render(<RatsukonTulos pisteet={[5,5,5]} />, div);
+  expect(div.textContent).toMatch('(50.0%)');
+  ReactDOM.render(<RatsukonTulos pisteet={[10,10,10]} />, div);
+  expect(div.textContent).toMatch('(100.0%)');
+  ReactDOM.render(<RatsukonTulos pisteet={[]} />, div);
+  expect(div.textContent).not.toMatch('%');
+  ReactDOM.render(<RatsukonTulos pisteet={[7, 6, 6]} />, div);
+  expect(div.textContent).toMatch('(63.3%)');
+});

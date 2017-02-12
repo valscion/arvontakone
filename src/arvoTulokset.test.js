@@ -4,6 +4,14 @@ describe('pilkoRivit', () =>{
   test('pilkkoo merkkijonon listaksi', () =>{
     expect(pilkoRivit("Uli\nAli\nOli")).toEqual(["Uli","Ali","Oli"]);
   });
+
+  test('ei huomioi tyhjiä rivejä', () =>{
+    expect(pilkoRivit("Uli\n\nAli\nOli\n\n\n")).toEqual(["Uli","Ali","Oli"]);
+  });
+
+  test('ei huomioi tyhjiä rivejä, joissa on välilyöntejä', () =>{
+    expect(pilkoRivit("Uli\n\nAli\nOli\n  \n \n")).toEqual(["Uli","Ali","Oli"]);
+  });
 });
 
 describe('arvoPisteet', () =>{

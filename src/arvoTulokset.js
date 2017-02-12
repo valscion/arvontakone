@@ -13,7 +13,7 @@ export function arvoPisteetRatsukoille(osallistujat, arvontakerrat){
 }
 
 export function pilkoRivit(merkkijono){
-  return merkkijono.split('\n');
+  return merkkijono.split('\n').filter((rivi)=> rivi.trim() !== "");
 }
 
 export function arvoPisteet(arvontakerrat){

@@ -60,14 +60,26 @@ describe('strong-tagien lisäys', () => {
   });
 });
 
-test('antaa pisteiden perusteella prosentin', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<RatsukonTulos pisteet={[5,5,5]} />, div);
-  expect(div.textContent).toMatch('(50.0%)');
-  ReactDOM.render(<RatsukonTulos pisteet={[10,10,10]} />, div);
-  expect(div.textContent).toMatch('(100.0%)');
-  ReactDOM.render(<RatsukonTulos pisteet={[]} />, div);
-  expect(div.textContent).not.toMatch('%');
-  ReactDOM.render(<RatsukonTulos pisteet={[7, 6, 6]} />, div);
-  expect(div.textContent).toMatch('(63.3%)');
+describe('pisteet prosenteiksi', () => {
+  test('antaa pisteiden perusteella prosentin', () => {
+    const div = document.createElement('div');
+    ReactDOM.render(<RatsukonTulos pisteet={[5,5,5]} />, div);
+    expect(div.textContent).toMatch('(50.0%)');
+    ReactDOM.render(<RatsukonTulos pisteet={[10,10,10]} />, div);
+    expect(div.textContent).toMatch('(100.0%)');
+    ReactDOM.render(<RatsukonTulos pisteet={[7, 6, 6]} />, div);
+    expect(div.textContent).toMatch('(63.3%)');
+  });
+
+  test('jos pisteet on tyhjä lista, tulostaa "ei pisteitä"', () => {
+    const div = document.createElement('div');
+    ReactDOM.render(<RatsukonTulos pisteet={[]} />, div);
+    expect(div.textContent).toMatch('(ei pisteitä)');
+  });
+
+  test('jos pisteitä ei ole, tulostaa "ei pisteitä', () => {
+    const div = document.createElement('div');
+    ReactDOM.render(<RatsukonTulos />, div);
+    expect(div.textContent).toMatch('(ei pisteitä)');
+  });
 });

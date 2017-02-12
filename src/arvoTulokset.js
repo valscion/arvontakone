@@ -1,6 +1,11 @@
 import random from 'lodash/random'
 import sortBy from 'lodash/sortBy'
 
+export default function arvoTulokset(osallistujat, arvontakerrat){
+  const arvontatulokset = arvoPisteetRatsukoille(osallistujat,arvontakerrat);
+  return jarjestaTulokset(arvontatulokset);
+}
+
 export function arvoPisteetRatsukoille(osallistujat, arvontakerrat){
   const ratsukot = pilkoRivit(osallistujat);
   return ratsukot.map((ratsukko) => {

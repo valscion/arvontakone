@@ -6,6 +6,7 @@ class Arvonta extends Component {
     super(props);
     this.state = {
       arvontakerrat: "1",
+      arvostelukohdat: "8",
       osallistujat: "",
       brTagi: false,
       boldattu: false
@@ -27,13 +28,25 @@ class Arvonta extends Component {
             />
           </Col>
         </FormGroup>
+        <FormGroup controlId="arvostelukohdat">
+          <Col sm={12}>
+            <ControlLabel>Arvostelukohdat (väh. 5):</ControlLabel>
+            <FormControl 
+              type="number" 
+              min="5"
+              max="999"
+              value={this.state.arvostelukohdat}
+              onChange={this.nappaaArvostelukohdat}
+            />
+          </Col>
+        </FormGroup>
 
         <FormGroup controlId="osallistujat">
           <Col sm={12}>
             <ControlLabel>Osallistujat:</ControlLabel>
             <FormControl 
               componentClass="textarea" 
-              rows="1" 
+              rows="6" 
               placeholder="osallistujat"
               value={this.state.osallistujat}
               onChange={this.nappaaOsallistujat}
@@ -63,6 +76,13 @@ class Arvonta extends Component {
     const arvo = event.target.value;
     if(arvo.match(/^[0-9]{0,3}$/)){
       this.setState({arvontakerrat: arvo});
+    }
+  }
+
+  nappaaArvostelukohdat = (event) => {
+    const arvo = event.target.value;
+    if(arvo.match(/^[0-9]{0,3}$/) && (arvo.length===0 || Number(arvo)>4) ){
+      this.setState({arvostelukohdat: arvo});
     }
   }
 

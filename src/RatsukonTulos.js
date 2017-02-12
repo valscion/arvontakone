@@ -5,7 +5,7 @@ export default class RatsukonTulos extends Component{
     return (
       <div>
         <StrongLisays lisaaStrong={this.props.boldattu && this.props.sijoittunut}>
-          {this.props.ratsukko}{this.props.brTagi && '<br />'}
+          {this.props.sijoitus}. {this.props.ratsukko}{this.props.brTagi && '<br />'}
         </StrongLisays>
       </div>
     );

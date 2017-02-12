@@ -1,4 +1,4 @@
-import {pilkoRivit, arvoPisteet, arvoPisteetRatsukoille} from './arvoTulokset';
+import {pilkoRivit, arvoPisteet, arvoPisteetRatsukoille, jarjestaTulokset} from './arvoTulokset';
 
 describe('pilkoRivit', () =>{
   test('pilkkoo merkkijonon listaksi', () =>{
@@ -33,3 +33,42 @@ describe('arvoPisteetRatsukoille', () =>{
     });
   });
 });
+
+
+describe('jarjestaTulokset', () =>{
+  test('järjestä tulokset pisteiden perusteella', () =>{
+    const arvontatulokset = [
+      {
+        ratsukko: "vika",
+        pisteet: [1,2]
+      },
+      {
+        ratsukko: "eka",
+        pisteet: [9,10]
+      },
+      {
+        ratsukko: "toka",
+        pisteet: [4,5]
+      }
+    ];
+
+    const jarjestettyna = [
+      {
+        ratsukko: "eka",
+        pisteet: [9,10]
+      },
+      {
+        ratsukko: "toka",
+        pisteet: [4,5]
+      },
+      {
+        ratsukko: "vika",
+        pisteet: [1,2]
+      }
+    ];
+
+    expect(jarjestaTulokset(arvontatulokset)).toEqual(jarjestettyna);
+
+  });
+});
+

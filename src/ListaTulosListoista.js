@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import Tulos from './Tulos'
+import TulosLista from './TulosLista'
 
-class Tulokset extends Component {
+class ListaTuloslistoista extends Component {
   render() {
     const tulosLista = this.props.tulosLista;
 
@@ -16,7 +16,7 @@ class Tulokset extends Component {
     return this.props.tulosLista.map((tulos, index) =>
       <div key={index}>
         <h2>Tulos {index+1}</h2>
-        <Tulos 
+        <TulosLista 
           tulos={tulos}
           boldattu={this.props.boldattu}
           brTagi={this.props.brTagi}
@@ -27,4 +27,4 @@ class Tulokset extends Component {
   }
 }
 
-export default Tulokset;
+export default ListaTuloslistoista;

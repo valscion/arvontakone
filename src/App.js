@@ -5,6 +5,8 @@ import Tiedot from './Tiedot';
 import Arvonta from './Arvonta';
 import ListaTulosListoista from './ListaTulosListoista';
 import arvoTulokset from './arvoTulokset';
+import {pilkoRivit} from './arvoTulokset';
+import laskeSijoittuneet from './laskeSijoittuneet';
 
 class App extends Component {
   constructor(props) {
@@ -39,7 +41,12 @@ class App extends Component {
       return arvoTulokset(arvot.osallistujat, Number(arvot.arvostelukohdat));  
     });
     
-    this.setState({lista: lista, boldattu: arvot.boldattu, brTagi: arvot.brTagi, sijoittuneet: 1});
+    this.setState({
+      lista: lista, 
+      boldattu: arvot.boldattu, 
+      brTagi: arvot.brTagi, 
+      sijoittuneet: laskeSijoittuneet(pilkoRivit(arvot.osallistujat))
+    });
   }
 
 }

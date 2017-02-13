@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {FormGroup, FormControl, Col, Button, ControlLabel, Checkbox} from 'react-bootstrap';
+import {FormGroup, FormControl, Col, Button, ControlLabel} from 'react-bootstrap';
 
 class Arvonta extends Component {
   constructor(props) {
@@ -7,15 +7,15 @@ class Arvonta extends Component {
     this.state = {
       arvontakerrat: "1",
       arvostelukohdat: "8",
-      osallistujat: "",
-      brTagi: false,
-      boldattu: false
+      osallistujat: ""
     };
   }
 
   render() {
     return (
       <form onSubmit={this.lahetaTiedot}>
+        <h2>Arvontakone</h2>
+
         <FormGroup controlId="arvontakerrat">
           <Col sm={12}>
             <ControlLabel>Arvontakerrat:</ControlLabel>
@@ -56,13 +56,6 @@ class Arvonta extends Component {
 
         <FormGroup>
           <Col sm={12}>
-            <Checkbox checked={this.state.brTagi} onChange={this.nappaaBrTagi}>Lisää {"<br />"}-tagit</Checkbox>
-            <Checkbox checked={this.state.boldattu} onChange={this.nappaaBoldattu}>Lihavoi sijoittuneet</Checkbox>
-          </Col>
-        </FormGroup>
-
-        <FormGroup>
-          <Col sm={12}>
             <Button type="submit">
               Arvo tulokset
             </Button>
@@ -81,21 +74,13 @@ class Arvonta extends Component {
 
   nappaaArvostelukohdat = (event) => {
     const arvo = event.target.value;
-    if(arvo.match(/^[0-9]{0,3}$/) && (arvo.length===0 || Number(arvo)>4) ){
+    if(arvo.match(/^[0-9]{0,3}$/)){
       this.setState({arvostelukohdat: arvo});
     }
   }
 
   nappaaOsallistujat = (event) => {
     this.setState({osallistujat: event.target.value});
-  }
-
-  nappaaBrTagi = (event) => {
-    this.setState({brTagi: event.target.checked});
-  }
-
-  nappaaBoldattu = (event) => {
-    this.setState({boldattu: event.target.checked});
   }
 
   lahetaTiedot = (event) => {

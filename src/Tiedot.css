@@ -1,0 +1,12 @@
+.otsikko{
+	background-color: #f8decb !important;
+	text-align: center;
+	padding: 5px !important;
+}
+
+.esittely {
+	line-height: 1.8;
+	font-size: 20px;
+	padding-top: 25px;
+	padding-bottom: 25px;
+}

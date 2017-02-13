@@ -22,7 +22,17 @@ export function pilkoRivit(merkkijono){
 }
 
 export function arvoPisteet(arvontakerrat){
-  return Array(arvontakerrat).fill(0).map(() => random(0, 10));
+  const i = Math.random();
+
+  if(i < 0.1){
+    return Array(arvontakerrat).fill(0).map(() => random(0, 7));
+  }
+  if(i < 0.8){
+    return Array(arvontakerrat).fill(0).map(() => random(3, 9));
+  } 
+  else{
+    return Array(arvontakerrat).fill(0).map(() => random(4, 10));
+  }
 }
 
 export function jarjestaTulokset(arvontatulokset){

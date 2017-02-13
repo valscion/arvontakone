@@ -9,7 +9,7 @@ function RatsukonTulosOletuksilla(props) {
       brTagi={false}
       boldattu={false}
       sijoittunut={false}
-      naytaProsentit={true}
+      naytaProsentti={true}
       naytaPisteet={false}
       sijoitus={1}
       pisteet={[]}
@@ -87,9 +87,9 @@ describe('pisteet ja prosentit', () => {
     expect(div.textContent).toMatch('(63.3%)');
   });
 
-  test('ei näytä prosentteja, jos naytaProsentit on false', ()=>{
+  test('ei näytä prosentteja, jos naytaProsentti on false', ()=>{
     const div = document.createElement('div');
-    ReactDOM.render(<RatsukonTulosOletuksilla pisteet={[5,5,5]} naytaProsentit={false} />, div);
+    ReactDOM.render(<RatsukonTulosOletuksilla pisteet={[5,5,5]} naytaProsentti={false} />, div);
     expect(div.textContent).not.toMatch('%');
   });
 

@@ -13,8 +13,6 @@ class App extends Component {
     super(props);
     this.state = {
       lista: [],
-      boldattu: false,
-      brTagi: true,
       sijoittuneet: 1
     };
   }
@@ -27,8 +25,6 @@ class App extends Component {
           <Arvonta nappaaArvot={this.nappaaArvot}/>
           <ListaTulosListoista 
             tulosLista={this.state.lista} 
-            boldattu={this.state.boldattu}
-            brTagi={this.state.brTagi}
             sijoittuneet={this.state.sijoittuneet}
           />
         </Grid>
@@ -43,8 +39,6 @@ class App extends Component {
     
     this.setState({
       lista: lista, 
-      boldattu: arvot.boldattu, 
-      brTagi: arvot.brTagi, 
       sijoittuneet: laskeSijoittuneet(pilkoRivit(arvot.osallistujat))
     });
   }

@@ -6,7 +6,10 @@ class TulosLista extends Component {
     tulos: PropTypes.arrayOf(PropTypes.object),
     boldattu: PropTypes.bool,
     brTagi: PropTypes.bool,
+    naytaProsentti: PropTypes.bool,
+    naytaPisteet: PropTypes.bool,
     sijoittuneet: PropTypes.number
+
   }
 
   render() {
@@ -18,6 +21,8 @@ class TulosLista extends Component {
             pisteet={ratsukonTulos.pisteet}
             brTagi={this.props.brTagi}
             boldattu={this.props.boldattu}
+            naytaProsentti={this.props.naytaProsentti}
+            naytaPisteet={this.props.naytaPisteet}
             sijoitus={index+1}
             sijoittunut={(index < this.props.sijoittuneet)}
           />

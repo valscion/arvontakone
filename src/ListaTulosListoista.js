@@ -8,7 +8,9 @@ class ListaTuloslistoista extends Component {
     super(props);
     this.state = {
       brTagi: false,
-      boldattu: false
+      boldattu: false,
+      naytaProsentti: true,
+      naytaPisteet: false
     };
   }
 
@@ -27,6 +29,12 @@ class ListaTuloslistoista extends Component {
                   </span>
                   <span className="inlineCheckbox">
                     <Checkbox checked={this.state.boldattu} onChange={this.nappaaBoldattu}> Lihavoi sijoittuneet</Checkbox>
+                  </span>
+                  <span className="inlineCheckbox">
+                    <Checkbox checked={this.state.naytaProsentti} onChange={this.nappaaNaytaProsentti}> Näytä prosentit</Checkbox>
+                  </span>
+                  <span className="inlineCheckbox">
+                    <Checkbox checked={this.state.naytaPisteet} onChange={this.nappaaNaytaPisteet}> Näytä pisteet</Checkbox>
                   </span>
               </FormGroup>
             </Form>
@@ -50,6 +58,15 @@ class ListaTuloslistoista extends Component {
     this.setState({boldattu: event.target.checked});
   }
 
+  nappaaNaytaProsentti = (event) => {
+    this.setState({naytaProsentti: event.target.checked});
+  }
+
+  nappaaNaytaPisteet = (event) => {
+    this.setState({naytaPisteet: event.target.checked});
+  }
+
+
 
   naytaTulokset(){
     return this.props.tulosLista.map((tulos, index) =>
@@ -59,6 +76,8 @@ class ListaTuloslistoista extends Component {
           tulos={tulos}
           boldattu={this.state.boldattu}
           brTagi={this.state.brTagi}
+          naytaProsentti={this.state.naytaProsentti}
+          naytaPisteet={this.state.naytaPisteet}
           sijoittuneet={this.props.sijoittuneet} 
         />
       </div>

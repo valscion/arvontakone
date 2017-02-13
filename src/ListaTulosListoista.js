@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Form, FormGroup, Col, Checkbox} from 'react-bootstrap';
+import {Grid, Row, Form, FormGroup, Col, Checkbox} from 'react-bootstrap';
 import './ListaTuloslistoista.css';
 import TulosLista from './TulosLista'
 
@@ -17,21 +17,27 @@ class ListaTuloslistoista extends Component {
 
     return (
       <div className="tulokset">
-
-      <Form inline>
-        <FormGroup controlId="formInlineCheckboxes">
-          <Col sm={12}>
-            <span className="inlineCheckbox">
-              <Checkbox checked={this.state.brTagi} onChange={this.nappaaBrTagi}> Lisää {"<br />"}-tagit</Checkbox>
-            </span>
-            <span className="inlineCheckbox">
-              <Checkbox checked={this.state.boldattu} onChange={this.nappaaBoldattu}> Lihavoi sijoittuneet</Checkbox>
-            </span>
+      <Grid>
+        <Row>
+          <Col smOffset={2} sm={10}>
+            <Form inline>
+              <FormGroup controlId="formInlineCheckboxes">
+                  <span className="inlineCheckbox">
+                    <Checkbox checked={this.state.brTagi} onChange={this.nappaaBrTagi}> Lisää {"<br />"}-tagit</Checkbox>
+                  </span>
+                  <span className="inlineCheckbox">
+                    <Checkbox checked={this.state.boldattu} onChange={this.nappaaBoldattu}> Lihavoi sijoittuneet</Checkbox>
+                  </span>
+              </FormGroup>
+            </Form>
           </Col>
-        </FormGroup>
-      </Form>
-
-        {tulosLista ?  this.naytaTulokset() : "Ei tuloksia"}
+        </Row>
+        <Row>
+          <Col sm={12}>
+            {tulosLista ?  this.naytaTulokset() : "Ei tuloksia"}
+          </Col>
+        </Row>
+      </Grid>
       </div>
     );
   }

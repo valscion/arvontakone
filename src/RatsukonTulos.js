@@ -7,6 +7,8 @@ export default class RatsukonTulos extends Component{
     pisteet: PropTypes.arrayOf(PropTypes.number).isRequired,
     boldattu: PropTypes.bool.isRequired,
     brTagi: PropTypes.bool.isRequired,
+    naytaProsentit: PropTypes.bool,
+    naytaPisteet:  PropTypes.bool,
     sijoittunut: PropTypes.bool.isRequired,
     sijoitus: PropTypes.number.isRequired
   }
@@ -15,7 +17,7 @@ export default class RatsukonTulos extends Component{
     return (
       <div className={this.props.sijoittunut && 'RatsukonTulos-sijoittunut'}>
         <StrongLisays lisaaStrong={this.props.boldattu && this.props.sijoittunut}>
-          {this.props.sijoitus}. {this.props.ratsukko} {laskeJaMuotoileProsentti(this.props.pisteet)}{this.props.brTagi && '<br />'}
+          {this.props.sijoitus}. {this.props.ratsukko} {laskeJaMuotoileProsentti(this.props.pisteet, this.props.naytaProsentit)}{this.props.naytaPisteet && naytaPisteet(this.props.pisteet)}{this.props.brTagi && '<br />'}
         </StrongLisays>
       </div>
     );
@@ -30,13 +32,22 @@ function StrongLisays(props) {
   }
 }
 
-function laskeJaMuotoileProsentti(pisteet){
+function laskeJaMuotoileProsentti(pisteet, naytaProsentit){
   if(pisteet && pisteet.length){
     const lkm = pisteet.length;
     const summa = pisteet.reduce((prev,curr) => prev + curr, 0);
     const tulos = ((summa/(lkm*10)));
-    return "(" + tulos.toLocaleString('fi-FI', {style:'percent', minimumFractionDigits: 1}) + ")";
+
+    if(naytaProsentit){
+      return "(" + tulos.toLocaleString('fi-FI', {style:'percent', minimumFractionDigits: 1}) + ")";
+    } else{
+      return "";
+    }
   }
 
   return "(ei pisteitä)";
+}
+
+function naytaPisteet(pisteet){
+  return pisteet.join('-');
 }

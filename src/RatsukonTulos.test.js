@@ -9,6 +9,8 @@ function RatsukonTulosOletuksilla(props) {
       brTagi={false}
       boldattu={false}
       sijoittunut={false}
+      naytaProsentit={true}
+      naytaPisteet={false}
       sijoitus={1}
       pisteet={[]}
       {...props}
@@ -74,7 +76,7 @@ describe('strong-tagien lisäys', () => {
   });
 });
 
-describe('pisteet prosenteiksi', () => {
+describe('pisteet ja prosentit', () => {
   test('antaa pisteiden perusteella prosentin', () => {
     const div = document.createElement('div');
     ReactDOM.render(<RatsukonTulosOletuksilla pisteet={[5,5,5]} />, div);
@@ -85,9 +87,22 @@ describe('pisteet prosenteiksi', () => {
     expect(div.textContent).toMatch('(63.3%)');
   });
 
-  test('jos pisteet on tyhjä lista, tulostaa "ei pisteitä"', () => {
+  test('ei näytä prosentteja, jos naytaProsentit on false', ()=>{
     const div = document.createElement('div');
-    ReactDOM.render(<RatsukonTulosOletuksilla pisteet={[]} />, div);
-    expect(div.textContent).toMatch('(ei pisteitä)');
+    ReactDOM.render(<RatsukonTulosOletuksilla pisteet={[5,5,5]} naytaProsentit={false} />, div);
+    expect(div.textContent).not.toMatch('%');
   });
+
+  test('näyttää pisteet jos naytaPisteet on true', ()=>{
+    const div = document.createElement('div');
+    ReactDOM.render(<RatsukonTulosOletuksilla pisteet={[5,5,5]} naytaPisteet={true} />, div);
+    expect(div.textContent).toMatch('5-5-5');
+  });
+
+  test('ei näytä pisteitä jos naytaPisteet on false', ()=>{
+    const div = document.createElement('div');
+    ReactDOM.render(<RatsukonTulosOletuksilla pisteet={[5,5,5]} />, div);
+    expect(div.textContent).not.toMatch('5-5-5');
+  });
+
 });

@@ -28,6 +28,11 @@ class App extends Component {
             sijoittuneet={this.state.sijoittuneet}
           />
         </Grid>
+        <div className="footer">
+          <p>
+            <small>Tehnyt <a href="mailto:virtuaali[at]salaovi.net">Otterley</a> 2017</small>
+            </p>
+        </div>
       </div>
     );
   }

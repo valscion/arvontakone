@@ -8,7 +8,9 @@ class Tiedot extends Component {
       <div>
         <Jumbotron className="otsikko">
           <h1>Koulukone</h1>
-          <p>Arvontakone virtuaalisille kouluratsatuskilpailuille</p>
+          <p>
+            Arvontakone virtuaalisille kouluratsatuskilpailuille
+          </p>
         </Jumbotron>
 
         <Grid>

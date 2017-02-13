@@ -17,8 +17,9 @@ export default class RatsukonTulos extends Component{
     return (
       <div className={this.props.sijoittunut && 'RatsukonTulos-sijoittunut'}>
         <StrongLisays lisaaStrong={this.props.boldattu && this.props.sijoittunut}>
-          {this.props.sijoitus}. {this.props.ratsukko} {laskeJaMuotoileProsentti(this.props.pisteet, this.props.naytaProsentti)} {this.props.naytaPisteet && naytaPisteet(this.props.pisteet)}{this.props.brTagi && '<br />'}
+          {this.props.sijoitus}. {this.props.ratsukko} {laskeJaMuotoileProsentti(this.props.pisteet, this.props.naytaProsentti)} {this.props.naytaPisteet && naytaPisteet(this.props.pisteet)}
         </StrongLisays>
+        {this.props.brTagi && '<br />'}
       </div>
     );
   }
@@ -26,9 +27,9 @@ export default class RatsukonTulos extends Component{
 
 function StrongLisays(props) {
   if (props.lisaaStrong) {
-    return <div>{'<strong>'}{props.children}{'</strong>'}</div>;
+    return <span>{'<strong>'}{props.children}{'</strong>'}</span>;
   } else {
-    return <div>{props.children}</div>;
+    return <span>{props.children}</span>;
   }
 }
 

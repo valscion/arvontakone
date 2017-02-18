@@ -8,8 +8,8 @@ class TulosLista extends Component {
     brTagi: PropTypes.bool,
     naytaProsentti: PropTypes.bool,
     naytaPisteet: PropTypes.bool,
+    naytaHylatyt: PropTypes.bool,
     sijoittuneet: PropTypes.number
-
   }
 
   render() {
@@ -23,6 +23,7 @@ class TulosLista extends Component {
             boldattu={this.props.boldattu}
             naytaProsentti={this.props.naytaProsentti}
             naytaPisteet={this.props.naytaPisteet}
+            naytaHylatyt={this.props.naytaHylatyt}
             sijoitus={index+1}
             sijoittunut={(index < this.props.sijoittuneet)}
           />

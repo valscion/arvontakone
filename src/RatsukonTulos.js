@@ -17,7 +17,7 @@ export default class RatsukonTulos extends Component{
     return (
       <div className={this.props.sijoittunut && 'RatsukonTulos-sijoittunut'}>
         <StrongLisays lisaaStrong={this.props.boldattu && this.props.sijoittunut}>
-          {this.props.sijoitus}. {this.props.ratsukko} {laskeJaMuotoileProsentti(this.props.pisteet, this.props.naytaProsentti)} {this.props.naytaPisteet && naytaPisteet(this.props.pisteet)}
+          {this.props.sijoitus}. {this.props.ratsukko} {laskeJaMuotoileProsentti(this.props.pisteet, this.props.naytaProsentti, this.props.naytaHylatyt)} {this.props.naytaPisteet && naytaPisteet(this.props.pisteet)}
         </StrongLisays>
         {this.props.brTagi && '<br />'}
       </div>
@@ -33,13 +33,16 @@ function StrongLisays(props) {
   }
 }
 
-function laskeJaMuotoileProsentti(pisteet, naytaProsentti){
+function laskeJaMuotoileProsentti(pisteet, naytaProsentti, naytaHylatyt){
   if(pisteet && pisteet.length){
     const lkm = pisteet.length;
     const summa = pisteet.reduce((prev,curr) => prev + curr, 0);
     const tulos = ((summa/(lkm*10)));
 
     if(naytaProsentti){
+      if(naytaHylatyt && tulos < 0.5){
+        return "(hylätty)";
+      } 
       return "(" + tulos.toLocaleString('fi-FI', {style:'percent', minimumFractionDigits: 3}) + ")";
     } else{
       return "";

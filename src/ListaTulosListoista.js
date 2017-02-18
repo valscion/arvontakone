@@ -10,7 +10,9 @@ class ListaTuloslistoista extends Component {
       brTagi: false,
       boldattu: false,
       naytaProsentti: true,
+      naytaHylatyt: true,
       naytaPisteet: false
+
     };
   }
 
@@ -32,6 +34,9 @@ class ListaTuloslistoista extends Component {
                   </span>
                   <span className="inlineCheckbox">
                     <Checkbox checked={this.state.naytaProsentti} onChange={this.nappaaNaytaProsentti}> Näytä prosentit</Checkbox>
+                  </span>
+                  <span className="inlineCheckbox">
+                    <Checkbox checked={this.state.naytaHylatyt} onChange={this.nappaaNaytaHylatyt}> Näytä hylätyt</Checkbox>
                   </span>
                   <span className="inlineCheckbox">
                     <Checkbox checked={this.state.naytaPisteet} onChange={this.nappaaNaytaPisteet}> Näytä pisteet</Checkbox>
@@ -66,6 +71,9 @@ class ListaTuloslistoista extends Component {
     this.setState({naytaPisteet: event.target.checked});
   }
 
+  nappaaNaytaHylatyt = (event) => {
+    this.setState({naytaHylatyt: event.target.checked});
+  }
 
 
   naytaTulokset(){
@@ -78,6 +86,7 @@ class ListaTuloslistoista extends Component {
           brTagi={this.state.brTagi}
           naytaProsentti={this.state.naytaProsentti}
           naytaPisteet={this.state.naytaPisteet}
+          naytaHylatyt={this.state.naytaHylatyt}
           sijoittuneet={this.props.sijoittuneet} 
         />
       </div>

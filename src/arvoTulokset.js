@@ -24,14 +24,17 @@ export function pilkoRivit(merkkijono){
 export function arvoPisteet(arvontakerrat){
   const i = Math.random();
 
-  if(i < 0.1){
+  if(i < 0.03){
     return Array(arvontakerrat).fill(0).map(() => random(0, 7));
   }
   if(i < 0.8){
-    return Array(arvontakerrat).fill(0).map(() => random(3, 9));
+    return Array(arvontakerrat).fill(0).map(() => random(3, 10));
   } 
-  else{
+  if(i < 0.9){
     return Array(arvontakerrat).fill(0).map(() => random(4, 10));
+  }
+  else{
+    return Array(arvontakerrat).fill(0).map(() => random(6, 10));
   }
 }
 

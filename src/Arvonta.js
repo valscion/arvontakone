@@ -6,7 +6,7 @@ class Arvonta extends Component {
     super(props);
     this.state = {
       arvontakerrat: "1",
-      arvostelukohdat: "8",
+      arvostelukohdat: "14",
       osallistujat: ""
     };
   }

@@ -26,25 +26,51 @@ export default class Satunnaisuus extends Component {
 
   render() {
     const data = this.state.data;
-    const arvontakerrat = this.state.arvontakerrat;
-    const isoinMahdollinenArvo = arvontakerrat * 10;
-    // Mille välille arvot jakaantuvat x- ja y-akselilla
-    const enitenEsiintymisiä = Math.max.apply(null, data.map(d => d.esiintymisKerrat));
+
     const domain = {
-      x: [0, 1],
-      y: [0, enitenEsiintymisiä]
+      x: [0, 1]
     };
+
+    const failedData = data.filter(d => d.x <= 0.5);
+    const succeededData = data.filter(d => d.x >= 0.5);
 
     return (
       <V.VictoryChart
         domain={domain}
         domainPadding={{x: [10, 0]}}
+        width={600}
+        height={400}
       >
-        <V.VictoryBar
-          data={data}
-          x={(d) => d.summa / (isoinMahdollinenArvo)}
-          y={(d) => d.esiintymisKerrat}
-          padding={2}
+        <V.VictoryArea
+          data={failedData}
+          style={{
+            data: {
+              stroke: 'hsl(0, 50%, 30%)',
+              fill: 'hsl(0, 20%, 50%)'
+            }
+          }}
+          interpolation='cardinal'
+        />
+        <V.VictoryArea
+          data={succeededData}
+          style={{
+            data: {
+              stroke: 'hsl(120, 50%, 30%)',
+              fill: 'hsl(120, 20%, 50%)'
+            }
+          }}
+          interpolation='catmullRom'
+        />
+        <V.VictoryAxis
+          label='Tulos'
+          tickFormat={
+            (tick) => tick.toLocaleString('fi-FI', {style:'percent'})
+          }
+        />
+        <V.VictoryAxis
+          dependentAxis
+          label='Esiintymistiheys'
+          tickFormat={() => ''}
         />
       </V.VictoryChart>
     );
@@ -117,7 +143,9 @@ function pisteListatVictoryMuodossa(listaListoista, arvontakerrat) {
   const listaObjekteja = summaAvaimet.map((summa) => {
     return {
       summa: summa,
-      esiintymisKerrat: summienEsiintymisKerrat[summa]
+      esiintymisKerrat: summienEsiintymisKerrat[summa],
+      x: summa / isoinMahdollinenSumma,
+      y: summienEsiintymisKerrat[summa]
     };
   });
 

@@ -7,6 +7,7 @@ class Tiedot extends Component {
     return (
       <div>
         <Jumbotron className="otsikko">
+          <a name="alku"></a>
           <h1>Koulukone</h1>
           <p>
             Arvontakone virtuaalisille kouluratsatuskilpailuille

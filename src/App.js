@@ -27,8 +27,11 @@ class App extends Component {
             tulosLista={this.state.lista} 
             sijoittuneet={this.state.sijoittuneet}
           />
-        </Grid>
+        </Grid>        
         <div className="footer">
+          <p>
+            <strong><a href="#alku">Takaisin ylös</a></strong>
+          </p>
           <p>
             <small>Tehnyt <a href="mailto:virtuaali[at]salaovi.net">Otterley</a> 2017</small>
             </p>

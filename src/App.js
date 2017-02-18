@@ -8,16 +8,23 @@ import arvoTulokset from './arvoTulokset';
 import {pilkoRivit} from './arvoTulokset';
 import laskeSijoittuneet from './laskeSijoittuneet';
 
+import SatunnaisuusVisualisointi from './visualisointi/Satunnaisuus';
+
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       lista: [],
-      sijoittuneet: 1
+      sijoittuneet: 1,
+      naytaVisualisointi: location.search.includes('visu')
     };
   }
 
   render() {
+    if (this.state.naytaVisualisointi) {
+      return <SatunnaisuusVisualisointi />;
+    }
+
     return (
       <div>
         <Grid>       

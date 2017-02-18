@@ -80,11 +80,11 @@ describe('pisteet ja prosentit', () => {
   test('antaa pisteiden perusteella prosentin', () => {
     const div = document.createElement('div');
     ReactDOM.render(<RatsukonTulosOletuksilla pisteet={[5,5,5]} />, div);
-    expect(div.textContent).toMatch('(50.0%)');
+    expect(div.textContent).toMatch('(50.000%)');
     ReactDOM.render(<RatsukonTulosOletuksilla pisteet={[10,10,10]} />, div);
-    expect(div.textContent).toMatch('(100.0%)');
+    expect(div.textContent).toMatch('(100.000%)');
     ReactDOM.render(<RatsukonTulosOletuksilla pisteet={[7, 6, 6]} />, div);
-    expect(div.textContent).toMatch('(63.3%)');
+    expect(div.textContent).toMatch('(63.333%)');
   });
 
   test('ei näytä prosentteja, jos naytaProsentti on false', ()=>{

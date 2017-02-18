@@ -40,7 +40,7 @@ function laskeJaMuotoileProsentti(pisteet, naytaProsentti){
     const tulos = ((summa/(lkm*10)));
 
     if(naytaProsentti){
-      return "(" + tulos.toLocaleString('fi-FI', {style:'percent', minimumFractionDigits: 1}) + ")";
+      return "(" + tulos.toLocaleString('fi-FI', {style:'percent', minimumFractionDigits: 3}) + ")";
     } else{
       return "";
     }

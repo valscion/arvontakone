@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-export default function Satunnaisuus() {
-  return <div>Hei, maailma!</div>
+export default class Satunnaisuus extends Component {
+  render() {
+    return <div>Hei, maailma!</div>;
+  }
 };

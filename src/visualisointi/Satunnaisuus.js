@@ -61,6 +61,9 @@ export default class Satunnaisuus extends Component {
           }}
           interpolation='catmullRom'
         />
+        <V.VictoryVoronoiTooltip
+          data={data}
+        />
         <V.VictoryAxis
           label='Tulos'
           tickFormat={
@@ -88,6 +91,8 @@ function pisteListatVictoryMuodossa(listaListoista, arvontakerrat) {
 
   const isoinMahdollinenSumma = arvontakerrat * 10;
   console.log('isoinMahdollinenSumma', isoinMahdollinenSumma);
+
+  const laskettujaSummia = listaSummista.length;
 
   // Alustetaan läpikäyntiä varten objekti, jossa jokainen mahdollinen
   // kokonaissumma on objektin avaimina ja arvot ovat jokaisella 0.
@@ -141,11 +146,16 @@ function pisteListatVictoryMuodossa(listaListoista, arvontakerrat) {
   // `summaAvaimet` on nyt [0, 1, 2, ...], ja jokaiselle arvolle löytyy vastinpari
   // `summienEsiintymisKerrat` objektista
   const listaObjekteja = summaAvaimet.map((summa) => {
+    const esiintymisKerrat = summienEsiintymisKerrat[summa];
+    const osuus =
+      (esiintymisKerrat / laskettujaSummia)
+      .toLocaleString('fi-FI', {style:'percent', minimumFractionDigits: 2});
     return {
       summa: summa,
-      esiintymisKerrat: summienEsiintymisKerrat[summa],
+      esiintymisKerrat: esiintymisKerrat,
       x: summa / isoinMahdollinenSumma,
-      y: summienEsiintymisKerrat[summa]
+      y: esiintymisKerrat,
+      label: `${summa}\n${osuus} kaikista`
     };
   });
 

@@ -102,15 +102,19 @@ describe('pisteet, prosentit ja tekstit', () => {
 
   test('ei näytä pisteitä jos naytaPisteet on false', ()=>{
     const div = document.createElement('div');
-    ReactDOM.render(<RatsukonTulosOletuksilla pisteet={[5,5,5]} />, div);
+    ReactDOM.render(<RatsukonTulosOletuksilla pisteet={[5,5,5]} naytaPisteet={false} />, div);
     expect(div.textContent).not.toMatch('5-5-5');
   });
 
   test('näyttää tekstin hylätty jos naytaHylatyt on true', ()=>{
     const div = document.createElement('div');
-    ReactDOM.render(<RatsukonTulosOletuksilla pisteet={[3,3,3]} naytaPisteet={true} />, div);
+    ReactDOM.render(<RatsukonTulosOletuksilla pisteet={[3,3,3]} naytaHylatyt={true} />, div);
     expect(div.textContent).toMatch('hylätty');
   });
 
-
+  test('ei näytä tekstiä hylätty jos naytaHylatyt on false', ()=>{
+    const div = document.createElement('div');
+    ReactDOM.render(<RatsukonTulosOletuksilla pisteet={[3,3,3]} naytaHylatyt={false} />, div);
+    expect(div.textContent).not.toMatch('hylätty');
+  });
 });

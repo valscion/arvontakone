@@ -27,7 +27,7 @@ export default class Satunnaisuus extends Component {
     const arvontakerrat = this.state.arvontakerrat;
     const isoinMahdollinenArvo = arvontakerrat * 10;
     // Mille välille arvot jakaantuvat x- ja y-akselilla
-    const enitenEsiintymisiä = Math.max.apply(null, data.map(d => d.y));
+    const enitenEsiintymisiä = Math.max.apply(null, data.map(d => d.esiintymisKerrat));
     const domain = {
       x: [0, 1],
       y: [0, enitenEsiintymisiä]
@@ -40,7 +40,8 @@ export default class Satunnaisuus extends Component {
       >
         <V.VictoryBar
           data={data}
-          x={(d) => d.x / (isoinMahdollinenArvo)}
+          x={(d) => d.summa / (isoinMahdollinenArvo)}
+          y={(d) => d.esiintymisKerrat}
           padding={2}
         />
       </V.VictoryChart>
@@ -113,12 +114,12 @@ function pisteListatVictoryMuodossa(listaListoista, arvontakerrat) {
   // `summienEsiintymisKerrat` objektista
   const listaObjekteja = summaAvaimet.map((summa) => {
     return {
-      x: summa,
-      y: summienEsiintymisKerrat[summa]
+      summa: summa,
+      esiintymisKerrat: summienEsiintymisKerrat[summa]
     };
   });
 
-  // Nyt data on siinä muodossa, mitä Victory odottaa:
-  // [{ x: 0, y: 25 }, { x: 1, y: 52 }, ...]
+  // Nyt data on siinä muodossa, mitä Victory osaa syödä:
+  // [{ summa: 0, esiintymisKerrat: 25 }, { summa: 1, esiintymisKerrat: 52 }, ...]
   return listaObjekteja;
 }

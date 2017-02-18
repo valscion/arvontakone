@@ -7,9 +7,10 @@ export default class Satunnaisuus extends Component {
     super();
 
     const arvontakerrat = 10;
+    const tarkkuus = 5000;
 
     // Arvo 5000 kertaa pisteet arvontakerralla
-    const pisteListat = Array(5000).fill(arvontakerrat).map(arvoPisteet);
+    const pisteListat = Array(tarkkuus).fill(arvontakerrat).map(arvoPisteet);
 
     // Muuta data Victory:n odottamaan muotoon
     const data = pisteListatVictoryMuodossa(pisteListat, arvontakerrat);
@@ -18,6 +19,7 @@ export default class Satunnaisuus extends Component {
 
     this.state = {
       data: data,
+      tarkkuus: tarkkuus,
       arvontakerrat: arvontakerrat
     };
   }

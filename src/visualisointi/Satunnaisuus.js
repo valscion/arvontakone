@@ -93,7 +93,7 @@ function pisteListatVictoryMuodossa(listaListoista, arvostelukohdat) {
   );
   console.log('listaSummista', listaSummista);
 
-  const isoinMahdollinenSumma = arvostelukohdat * 10;
+  const isoinMahdollinenSumma = arvostelukohdat * 20;
   console.log('isoinMahdollinenSumma', isoinMahdollinenSumma);
 
   const laskettujaSummia = listaSummista.length;

@@ -80,41 +80,41 @@ describe('strong-tagien lisäys', () => {
 describe('pisteet, prosentit ja tekstit', () => {
   test('antaa pisteiden perusteella prosentin', () => {
     const div = document.createElement('div');
-    ReactDOM.render(<RatsukonTulosOletuksilla pisteet={[5,5,5]} />, div);
-    expect(div.textContent).toMatch('(50.000%)');
     ReactDOM.render(<RatsukonTulosOletuksilla pisteet={[10,10,10]} />, div);
+    expect(div.textContent).toMatch('(50.000%)');
+    ReactDOM.render(<RatsukonTulosOletuksilla pisteet={[20,20,20]} />, div);
     expect(div.textContent).toMatch('(100.000%)');
-    ReactDOM.render(<RatsukonTulosOletuksilla pisteet={[7, 6, 6]} />, div);
+    ReactDOM.render(<RatsukonTulosOletuksilla pisteet={[14, 12, 12]} />, div);
     expect(div.textContent).toMatch('(63.333%)');
   });
 
   test('ei näytä prosentteja, jos naytaProsentti on false', ()=>{
     const div = document.createElement('div');
-    ReactDOM.render(<RatsukonTulosOletuksilla pisteet={[5,5,5]} naytaProsentti={false} />, div);
+    ReactDOM.render(<RatsukonTulosOletuksilla pisteet={[10,10,10]} naytaProsentti={false} />, div);
     expect(div.textContent).not.toMatch('%');
   });
 
   test('näyttää pisteet jos naytaPisteet on true', ()=>{
     const div = document.createElement('div');
-    ReactDOM.render(<RatsukonTulosOletuksilla pisteet={[5,5,5]} naytaPisteet={true} />, div);
-    expect(div.textContent).toMatch('5-5-5');
+    ReactDOM.render(<RatsukonTulosOletuksilla pisteet={[10,11,10]} naytaPisteet={true} />, div);
+    expect(div.textContent).toMatch('5 / 5.5 / 5');
   });
 
   test('ei näytä pisteitä jos naytaPisteet on false', ()=>{
     const div = document.createElement('div');
-    ReactDOM.render(<RatsukonTulosOletuksilla pisteet={[5,5,5]} naytaPisteet={false} />, div);
-    expect(div.textContent).not.toMatch('5-5-5');
+    ReactDOM.render(<RatsukonTulosOletuksilla pisteet={[10,11,10]} naytaPisteet={false} />, div);
+    expect(div.textContent).not.toMatch('5 / 5.5 / 5');
   });
 
   test('näyttää tekstin hylätty jos naytaHylatyt on true', ()=>{
     const div = document.createElement('div');
-    ReactDOM.render(<RatsukonTulosOletuksilla pisteet={[3,3,3]} naytaHylatyt={true} />, div);
+    ReactDOM.render(<RatsukonTulosOletuksilla pisteet={[6,6,6]} naytaHylatyt={true} />, div);
     expect(div.textContent).toMatch('hylätty');
   });
 
   test('ei näytä tekstiä hylätty jos naytaHylatyt on false', ()=>{
     const div = document.createElement('div');
-    ReactDOM.render(<RatsukonTulosOletuksilla pisteet={[3,3,3]} naytaHylatyt={false} />, div);
+    ReactDOM.render(<RatsukonTulosOletuksilla pisteet={[6,6,6]} naytaHylatyt={false} />, div);
     expect(div.textContent).not.toMatch('hylätty');
   });
 });

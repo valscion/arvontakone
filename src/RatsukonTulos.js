@@ -37,7 +37,7 @@ function laskeJaMuotoileProsentti(pisteet, naytaProsentti, naytaHylatyt){
   if(pisteet && pisteet.length){
     const lkm = pisteet.length;
     const summa = pisteet.reduce((prev,curr) => prev + curr, 0);
-    const tulos = ((summa/(lkm*10)));
+    const tulos = ((summa/(lkm*20)));
 
     if(naytaProsentti){
       if(naytaHylatyt && tulos < 0.5){
@@ -53,5 +53,5 @@ function laskeJaMuotoileProsentti(pisteet, naytaProsentti, naytaHylatyt){
 }
 
 function naytaPisteet(pisteet){
-  return pisteet.join('-');
+  return pisteet.map(piste => piste / 2).join(' / ');
 }

@@ -1,26 +1,27 @@
 import React, { Component } from 'react';
 import * as V from 'victory';
 import { arvoPisteet } from '../arvoTulokset';
+import {Grid} from 'react-bootstrap';
 
 export default class Satunnaisuus extends Component {
   constructor() {
     super();
 
-    const arvontakerrat = 10;
-    const tarkkuus = 5000;
+    const arvostelukohdat = 10;
+    const arvontakerrat = 5000;
 
     // Arvo 5000 kertaa pisteet arvontakerralla
-    const pisteListat = Array(tarkkuus).fill(arvontakerrat).map(arvoPisteet);
+    const pisteListat = Array(arvontakerrat).fill(arvostelukohdat).map(arvoPisteet);
 
     // Muuta data Victory:n odottamaan muotoon
-    const data = pisteListatVictoryMuodossa(pisteListat, arvontakerrat);
+    const data = pisteListatVictoryMuodossa(pisteListat, arvostelukohdat);
 
     console.log("LOPPUDATA", data);
 
     this.state = {
       data: data,
-      tarkkuus: tarkkuus,
-      arvontakerrat: arvontakerrat
+      arvontakerrat: arvontakerrat,
+      arvostelukohdat: arvostelukohdat
     };
   }
 
@@ -35,6 +36,7 @@ export default class Satunnaisuus extends Component {
     const succeededData = data.filter(d => d.x >= 0.5);
 
     return (
+    <Grid>
       <V.VictoryChart
         domain={domain}
         domainPadding={{x: [10, 0]}}
@@ -66,6 +68,7 @@ export default class Satunnaisuus extends Component {
         />
         <V.VictoryAxis
           label='Tulos'
+          tickCount={10}
           tickFormat={
             (tick) => tick.toLocaleString('fi-FI', {style:'percent'})
           }
@@ -76,11 +79,12 @@ export default class Satunnaisuus extends Component {
           tickFormat={() => ''}
         />
       </V.VictoryChart>
+    </Grid>
     );
   }
 };
 
-function pisteListatVictoryMuodossa(listaListoista, arvontakerrat) {
+function pisteListatVictoryMuodossa(listaListoista, arvostelukohdat) {
   console.log('listaListoista', listaListoista);
 
   // Data on nyt muodossa [[5, 8, ...], [4, 2, ...], ...]
@@ -89,7 +93,7 @@ function pisteListatVictoryMuodossa(listaListoista, arvontakerrat) {
   );
   console.log('listaSummista', listaSummista);
 
-  const isoinMahdollinenSumma = arvontakerrat * 10;
+  const isoinMahdollinenSumma = arvostelukohdat * 10;
   console.log('isoinMahdollinenSumma', isoinMahdollinenSumma);
 
   const laskettujaSummia = listaSummista.length;
